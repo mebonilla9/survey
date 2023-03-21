@@ -1,18 +1,26 @@
 const questions = document.querySelectorAll('.question');
 const radios = document.querySelectorAll('input[type="radio"]');
 
+const regex = /(\d+)|(\D+)/g;
+
 console.log(radios);
+let values = 0;
 
 for (let i = 0; i < radios.length; i++) {
     radios[i].addEventListener('change', changeEvent);
 }
 
 function changeEvent(e) {
-    /* const currentQuestion = this.closest('.section');
-    const nextQuestion = currentQuestion.nextElementSibling;
-    currentQuestion.classList.remove('active');
-    nextQuestion.classList.add('active'); */
-    for (let i = 1; i < 11; i++) {
-        window.location.href = `#section${i}`;
+    values += parseInt(e.target.value);
+    console.log(values);
+    window.location.href = `#section${parseInt(e.target.name.split('q')[1])+1}`;
+    if(e.target.name === 'q10'){
+        document.querySelector('.score').innerHTML = values/10;
+        document.querySelector('.level').innerHTML = 'loquesea';
     }
+
+}
+
+function defineLevel(score){
+    let level = '';
 }
